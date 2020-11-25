@@ -29,24 +29,25 @@
               <label class="main-label">Dob:</label>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradio">Novorođenče
+                  <input type="radio" class="form-check-input" value="newborn" name="age">Novorođenče
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradio">Dojenče < 6 mjeseci
+                  <input type="radio" class="form-check-input" name="age" value="less-then-6">Dojenče < 6 mjeseci
                 </label>
               </div>
-              <div class="form-check disabled">
+              <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradio">Dojenče <span>&#8805;</span> 6 mjeseci
+                  <input type="radio" class="form-check-input" name="age" value="greater-then-6">Dojenče <span>&#8805;</span> 6 mjeseci
                 </label>
               </div>
-              <div class="form-check disabled">
+              <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" button id="Starije" class="form-check-input" name="optradio">Dijete <span>&#8805;</span> 1 godine
-                  
+                  <input type="radio" class="form-check-input" name="age" value="child">Dijete <span>&#8805;</span> 1 godine                  
                 </label>
+                <input type="number" class="form-control" placeholder="Unesi dob u godinama" id="age" style="display: none">
+                
               </div>
             </div>
             <div class="form-group">
@@ -55,7 +56,7 @@
               
             </div>
             
-            <button class="btn btn-primary">START</button>
+            <button class="btn btn-primary" id="start">START</button>
           </form>
           
         
