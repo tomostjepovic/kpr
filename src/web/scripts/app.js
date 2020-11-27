@@ -51,5 +51,53 @@ $( "#start" ).click(function(event) {
     }
 
 
-    alert("Idemoooo");
+    $("#procedures").show();
+
+    calculateAdrenalin(weight);
+    calculateAmiodaron(weight);    
+    calculateBolus(weight);
+    calculateDefib(weight);
+    calculateVtub (ageInYears);
 });
+
+function calculateAdrenalin(weight) {
+    var adrenalin = 0.1 * weight;
+    if (adrenalin > 10) {
+        adrenalin = 10;
+    }
+
+    $("#adrenalin").text(adrenalin + " mL otopine 1:10 000");
+}
+
+function calculateAmiodaron(weight) {
+    var amiodaron = 5 * weight;
+    if (amiodaron > 300) {
+        amiodaron = 300;
+    }
+
+    $("#amiodaron").text(amiodaron + " mg");
+}
+
+
+function calculateBolus(weight) {
+    var bolus = weight * 20;
+
+    $("#bolus").text(bolus + " mL"); 
+
+}
+
+function calculateDefib(weight) {
+    var defib = 4 * weight;
+    if (defib > 360) {
+        defib = 360;
+    }
+
+    $("#defib").text(defib + " J");
+}
+
+function calculateVtub (ageInYears) {
+    var vtub = ageInYears / 4;
+
+    $("#vtub").text(vtub + " cm");
+}
+
