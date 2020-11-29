@@ -12,6 +12,7 @@ $('input[type=radio][name=age]').change(function() {
 });
 
 $( "#start" ).click(function(event) {
+    
     event.preventDefault();
     var age = $('input[name="age"]:checked').val();
 
@@ -49,16 +50,52 @@ $( "#start" ).click(function(event) {
 
         return;
     }
-
-
-    $("#procedures").show();
-
+    
     calculateAdrenalin(weight);
     calculateAmiodaron(weight);    
     calculateBolus(weight);
     calculateDefib(weight);
     calculateVtub (ageInYears);
+    
+    startReanimation();
 });
+
+window.onbeforeunload = function(event)
+{
+    return confirm("Reanimacija je u tijeku. Jeste li sigurni da želite napustiti aplikaciju?");
+};
+
+
+
+$(".back-button").click(function(event) {   
+    $(".procedure-container").hide();
+    $("#procedures-menu").show();
+});
+
+$("#kpr-button").click(function(event) {
+    showProcedure("kpr");
+});
+
+$("#anafilaksija-button").click(function(event) {
+    showProcedure("anafilaksija");
+});
+
+function showProcedure(procedureId){    
+    $("#procedures-menu").hide();
+    $("#" + procedureId).show();
+}
+
+function startReanimation() {
+    // sakriti glavnu formu
+    $("#data-form").hide();
+
+    // prikazati štopericu i prikazati ju
+    $("#stopwatch-container").show();
+
+    // prikazati formu procedura
+    $("#procedures-menu").show();
+
+}
 
 function calculateAdrenalin(weight) {
     var adrenalin = 0.1 * weight;

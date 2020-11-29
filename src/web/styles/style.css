@@ -9,3 +9,12 @@
 .drug-name {
     font-weight: bold;
 }
+
+.procedure-button {
+    width:200px;
+    margin-top: 5px;
+}
+
+.back-button {
+    cursor: pointer;
+}
