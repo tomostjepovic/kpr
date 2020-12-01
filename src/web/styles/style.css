@@ -22,3 +22,15 @@
     color: #f81313;
     font-weight: bold;
 }
+
+.info-button {
+    color: blue;
+}
+
+.add-drug-button {
+    color: green
+}
+
+.drug-button {
+    font-size: 30px;
+}

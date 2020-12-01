@@ -79,7 +79,7 @@ $( "#start" ).click(function(event) {
     calculateTubus(ageType, ageInYears);
     calculateKateholamin(weight);
 
-    startStopwatch();
+    //startStopwatch();
     
     startReanimation();
 });
@@ -90,9 +90,41 @@ function startStopwatch() {
 
 window.onbeforeunload = function(event)
 {
-    return confirm("Reanimacija je u tijeku. Jeste li sigurni da želite napustiti aplikaciju?");
+   // return confirm("Reanimacija je u tijeku. Jeste li sigurni da želite napustiti aplikaciju?");
 };
 
+$(".info-button").click(function(event) {   
+    var elemId = event.target.id;
+    var title = "";
+    var description = "";
+    switch (elemId) {
+        case "adrenalin-info": {
+            title = "Adrenalin";
+            description = "Razrijediti jednu ampulu adrenalina (1mg/mL) s 9 mL F.O. <br> Kada jednom damo adrenalin, nastavljamo do kraja reanimacije svaki 2. ciklus." ;
+            break;
+        }
+        case "amiodaron-info": {
+            title = "Amiodaron";
+            description = "Razrijediti jednu ampulu amiodarona (150 mg/3 mL) s 12 mL 5% glukoze. <br> Kod VF i VT bez pulsa, primjeniti nakon 3. i 5. šoka." ;
+            break;
+        }
+        case "defib-info": {
+            title = "Defibrilacija";
+            description = "Ritmovi koji se defibriliraju jesu VF i VT bez pulsa." ;
+            break;
+        }
+        case "kateholamin-info": {
+            title = "Adrenalin";
+            description = "Za kontinuiranu infuziju adrenalina/noradrenalnina razrijediti 1 mg adrenalina/noradrenalina u 50 mL F.O. <br> Za kontinuiranu infuziju dopamina/dobutamina razrijediti 50 mg dopamina/dobutamina u 50 mL F.O:" ;
+            break;
+        }
+    }
+
+    $("#modal-title").text(title);
+    $("#modal-body-content").html(description);
+
+    $('#exampleModalLong').modal({});
+});
 
 
 $(".back-button").click(function(event) {   
@@ -115,7 +147,7 @@ function showProcedure(procedureId){
 
 function startReanimation() {
     // sakriti glavnu formu
-    //$("#data-form").hide();
+    $("#data-form").hide();
 
     // prikazati štopericu i prikazati ju
     $("#stopwatch-container").show();
@@ -129,8 +161,8 @@ function calculateKateholamin(weight) {
     var number = weight / 3;
     var rounded = Math.round(number * 10) / 10;
     
-    $("#adrenalin-noradrenalin").text(rounded);
-    $("#dopamin-dobutamin").text(rounded);
+    $("#adrenalin-noradrenalin").text(rounded + " mL/h");
+    $("#dopamin-dobutamin").text(rounded + " mL/h");
 }
 
 function calculateAdrenalin(weight) {
@@ -172,27 +204,27 @@ function calculateDefib(weight) {
 function calculateVtub (ageType, ageInYears) {
     switch (ageType) {
         case ageTypeEnum.NEWBORN: {           
-            $("#vtub").text("3.5"); 
+            $("#vtub").text("3.5 mm"); 
             $("#vtub-cuffa").text("Obično se ne koristi");
 
             break;
         }
         case ageTypeEnum.LESS_THEN_6:
         case ageTypeEnum.GREATER_THEN_6: {           
-            $("#vtub").text("3.5 - 4.0"); 
-            $("#vtub-cuffa").text("3.0 - 3.5");
+            $("#vtub").text("3.5 - 4.0 mm"); 
+            $("#vtub-cuffa").text("3.0 - 3.5 mm");
 
             break;
         }
         case ageTypeEnum.CHILD: {
             if (ageInYears < 3) {                         
-                $("#vtub").text("4.0 - 4.5"); 
-                $("#vtub-cuffa").text("3.5 - 4.0");
+                $("#vtub").text("4.0 - 4.5 mm"); 
+                $("#vtub-cuffa").text("3.5 - 4.0 mm");
             } else {
                 var diff = ageInYears/4;
                 var diffRounded = Math.ceil(diff*2)/2;
-                $("#vtub").text(diffRounded + 4); 
-                $("#vtub-cuffa").text(diffRounded + 3.5);
+                $("#vtub").text(diffRounded + 4 + " mm"); 
+                $("#vtub-cuffa").text(diffRounded + 3.5 + " mm");
             }
 
             break;
@@ -203,28 +235,28 @@ function calculateVtub (ageType, ageInYears) {
 function calculateTubus (ageType, ageInYears) {
     switch (ageType) {
         case ageTypeEnum.NEWBORN: {           
-            $("#oral").text("9"); 
-            $("#nazal").text("11 - 11.5");
+            $("#oral").text("9 cm"); 
+            $("#nazal").text("11 - 11.5 cm");
 
             break;
         }
         case ageTypeEnum.LESS_THEN_6: {      
-            $("#oral").text("9.5 - 11"); 
-            $("#nazal").text("12 - 13");
+            $("#oral").text("9.5 - 11 cm"); 
+            $("#nazal").text("12 - 13 cm");
 
             break;
         }
         case ageTypeEnum.GREATER_THEN_6: {
-            $("#oral").text("11.5 - 12"); 
-            $("#nazal").text("13 - 14");
+            $("#oral").text("11.5 - 12 cm"); 
+            $("#nazal").text("13 - 14 cm");
 
             break;
         }
         case ageTypeEnum.CHILD: {
             var diff = ageInYears/2;
                 
-            $("#oral").text(diff + 12); 
-            $("#nazal").text(diff + 15);
+            $("#oral").text(diff + 12 + " cm"); 
+            $("#nazal").text(diff + 15 + " cm");
 
             break;
         }
