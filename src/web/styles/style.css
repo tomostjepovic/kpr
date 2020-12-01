@@ -17,3 +17,8 @@
 .back-button {
     cursor: pointer;
 }
+
+.drug-value {
+    color: #f81313;
+    font-weight: bold;
+}

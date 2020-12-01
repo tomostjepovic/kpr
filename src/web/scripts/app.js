@@ -77,6 +77,8 @@ $( "#start" ).click(function(event) {
     calculateDefib(weight);
     calculateVtub (ageType, ageInYears);
     calculateTubus(ageType, ageInYears);
+    calculateKateholamin(weight);
+
     startStopwatch();
     
     startReanimation();
@@ -123,8 +125,17 @@ function startReanimation() {
 
 }
 
+function calculateKateholamin(weight) {
+    var number = weight / 3;
+    var rounded = Math.round(number * 10) / 10;
+    
+    $("#adrenalin-noradrenalin").text(rounded);
+    $("#dopamin-dobutamin").text(rounded);
+}
+
 function calculateAdrenalin(weight) {
     var adrenalin = 0.1 * weight;
+    adrenalin = Math.round(adrenalin * 10) / 10
     if (adrenalin > 10) {
         adrenalin = 10;
     }
@@ -203,7 +214,7 @@ function calculateTubus (ageType, ageInYears) {
 
             break;
         }
-        case ageTypeEnum.GREATER_THEN_6: {       
+        case ageTypeEnum.GREATER_THEN_6: {
             $("#oral").text("11.5 - 12"); 
             $("#nazal").text("13 - 14");
 
