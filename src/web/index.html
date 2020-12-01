@@ -15,17 +15,6 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#"><img src="images/logo.png" class="logo-image" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">KPR <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
     </nav>
     <div class="container">
         <form id="data-form">
@@ -65,11 +54,17 @@
 
             <button class="btn btn-primary" id="start">START</button>
         </form>
-        <div class="row" id="stopwatch-container" style="display: none;">00:00:00</div>
+        <div class="row" id="stopwatch-container">            
+        <div id="stopwatch"></div>
+        </div>
         <div class="container" id="procedures-menu" style="display: none;">
-            <div class="row"><button class="btn btn-primary procedure-button" id="kpr-button">KPR</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button" id="anafilaksija-button">ANAFILAKSIJA</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button" id="aritmija-button">ARITMIJA</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="kpr-button">KPR</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="anafilaksija-button">ANAFILAKSIJA</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">ARITMIJA</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">GLUKOZA I ELEKTROLITI</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">KONVULZIJE</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">ONKOLIGIJA</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">VITALNE FUNKCIJE</button></div>
         </div>
 
         <div id="kpr" class="procedure-container" style="display: none;" >
@@ -121,10 +116,11 @@
                     <li class="list-group-item">
                         <div class="drug-container row">
                             <div class="col-6">
-                                <span class="drug-name">Veličina tubusa</span>
+                                <span class="drug-name">Veličina tubusa (mm)</span>
                             </div>
                             <div class="col-6">
-                                <span id="vtub" class="drug-value"></span>
+                                <div>Bez balončića: <span id="vtub" class="drug-value"></span></div>
+                                <div>S balončićem: <span id="vtub-cuffa" class="drug-value"></span></div>
                             </div>
                         </div>
                     </li>
@@ -200,6 +196,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="scripts/countimer.js"></script>
         <script src="scripts/app.js"></script>
 </body>
 

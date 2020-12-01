@@ -1,5 +1,5 @@
 .logo-image {
-    max-height: 80px;
+    height: 40px;
 }
 
 .main-label {
@@ -11,7 +11,6 @@
 }
 
 .procedure-button {
-    width:200px;
     margin-top: 5px;
 }
 

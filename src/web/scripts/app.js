@@ -1,6 +1,9 @@
-function test() {
-    alert('Unesite dob!');
-}
+const ageTypeEnum = {
+    NEWBORN: 0,
+    LESS_THEN_6: 1,
+    GREATER_THEN_6: 2,
+    CHILD: 3
+};
 
 $('input[type=radio][name=age]').change(function() {
     if (this.value == 'child') {
@@ -23,17 +26,34 @@ $( "#start" ).click(function(event) {
 
     var ageInYears;
 
-    if (age == 'child') {
-        ageInYears = $('#age').val();
-        if (ageInYears  == undefined || ageInYears == '') {
-            alert("Potrebno je upisati dob.");
+    var ageType;
 
-            return;
+    switch (age) {
+        case "newborn": {
+            ageType = ageTypeEnum.NEWBORN;
+            break;
         }
-        if (!(Number.isInteger(+ageInYears)) || !(ageInYears > 0)) {
-            alert("Dob mora biti cijeli broj veći od nule.");
+        case "less-then-6": {
+            ageType = ageTypeEnum.LESS_THEN_6;
+            break;
+        }
+        case "greater-then-6": {
+            ageType = ageTypeEnum.GREATER_THEN_6;
+            break;
+        }
+        default: {           
+            ageInYears = $('#age').val();
+            if (ageInYears  == undefined || ageInYears == '') {
+                alert("Potrebno je upisati dob.");
 
-            return;
+                return;
+            }
+            if (!(Number.isInteger(+ageInYears)) || !(ageInYears > 0)) {
+                alert("Dob mora biti cijeli broj veći od nule.");
+
+                return;
+            } 
+            ageType = ageTypeEnum.CHILD;
         }
     }
 
@@ -55,10 +75,15 @@ $( "#start" ).click(function(event) {
     calculateAmiodaron(weight);    
     calculateBolus(weight);
     calculateDefib(weight);
-    calculateVtub (ageInYears);
+    calculateVtub (ageType, ageInYears);
+    startStopwatch();
     
     startReanimation();
 });
+
+function startStopwatch() {
+    $('#stopwatch').countimer();
+}
 
 window.onbeforeunload = function(event)
 {
@@ -87,7 +112,7 @@ function showProcedure(procedureId){
 
 function startReanimation() {
     // sakriti glavnu formu
-    $("#data-form").hide();
+    //$("#data-form").hide();
 
     // prikazati štopericu i prikazati ju
     $("#stopwatch-container").show();
@@ -132,9 +157,33 @@ function calculateDefib(weight) {
     $("#defib").text(defib + " J");
 }
 
-function calculateVtub (ageInYears) {
-    var vtub = ageInYears / 4;
+function calculateVtub (ageType, ageInYears) {
+    switch (ageType) {
+        case ageTypeEnum.NEWBORN: {           
+            $("#vtub").text("3.5"); 
+            $("#vtub-cuffa").text("Obično se ne koristi");
 
-    $("#vtub").text(vtub + " cm");
+            break;
+        }
+        case ageTypeEnum.LESS_THEN_6:
+        case ageTypeEnum.GREATER_THEN_6: {           
+            $("#vtub").text("3.5 - 4.0"); 
+            $("#vtub-cuffa").text("3.0 - 3.5");
+
+            break;
+        }
+        case ageTypeEnum.CHILD: {
+            if (ageInYears < 3) {                         
+                $("#vtub").text("4.0 - 4.5"); 
+                $("#vtub-cuffa").text("3.5 - 4.0");
+            } else {
+                var diff = ageInYears/4;
+                var diffRounded = Math.ceil(diff*2)/2;
+                $("#vtub").text(diffRounded + 4); 
+                $("#vtub-cuffa").text(diffRounded + 3.5);
+            }
+
+            break;
+        }
+    }    
 }
-
