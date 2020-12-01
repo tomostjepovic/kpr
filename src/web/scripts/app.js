@@ -76,6 +76,7 @@ $( "#start" ).click(function(event) {
     calculateBolus(weight);
     calculateDefib(weight);
     calculateVtub (ageType, ageInYears);
+    calculateTubus(ageType, ageInYears);
     startStopwatch();
     
     startReanimation();
@@ -186,4 +187,35 @@ function calculateVtub (ageType, ageInYears) {
             break;
         }
     }    
+}
+
+function calculateTubus (ageType, ageInYears) {
+    switch (ageType) {
+        case ageTypeEnum.NEWBORN: {           
+            $("#oral").text("9"); 
+            $("#nazal").text("11 - 11.5");
+
+            break;
+        }
+        case ageTypeEnum.LESS_THEN_6: {      
+            $("#oral").text("9.5 - 11"); 
+            $("#nazal").text("12 - 13");
+
+            break;
+        }
+        case ageTypeEnum.GREATER_THEN_6: {       
+            $("#oral").text("11.5 - 12"); 
+            $("#nazal").text("13 - 14");
+
+            break;
+        }
+        case ageTypeEnum.CHILD: {
+            var diff = ageInYears/2;
+                
+            $("#oral").text(diff + 12); 
+            $("#nazal").text(diff + 15);
+
+            break;
+        }
+    }
 }
