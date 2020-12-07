@@ -1,5 +1,5 @@
 $(".main-back-button").click(function(event) {   
-    $(".procedure-container").hide();
+    $(".procedures-container").hide();
     $("#procedures-menu").show();
 });
 
@@ -17,7 +17,7 @@ $("#anafilaksija-button").click(function(event) {
 });
 
 $("#glucose-electrolits-button").click(function(event) {
-    showProcedure("glucose-electrolits-menu");
+    showProcedure("hiponatremija");
 });
 
 $("#hiponatremija-button").click(function(event) {
@@ -27,5 +27,7 @@ $("#hiponatremija-button").click(function(event) {
 
 function showProcedure(procedureId){    
     $("#procedures-menu").hide();
+    $(".procedures-container").show();
+    $(".procedure-container").hide();
     $("#" + procedureId).show();
 }
