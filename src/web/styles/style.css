@@ -19,7 +19,7 @@
 }
 
 .drug-value {
-    color: #f81313;
+    color: #d85e72;
     font-weight: bold;
 }
 
@@ -33,4 +33,12 @@
 
 .drug-button {
     font-size: 30px;
+}
+
+#stopwatch {
+    width: 100%;
+    text-align: center;
+    font-size: 2.5em;
+    color: #f43d3d;
+    font-weight: bold;
 }

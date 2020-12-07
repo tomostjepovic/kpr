@@ -47,13 +47,12 @@
                 <div class="form-group">
                     
                     <input type="number" class="form-control" placeholder="Unesi dob u godinama" id="age"
-                        style="display: none">
+                        style="display: none" autocomplete="false">
                 </div>
             </div>
             <div class="form-group">
                 <label for="weight" class="main-label">Težina:</label>
-                <input type="number" class="form-control" placeholder="Unesi težinu u kilogramima" id="weight">
-
+                <input type="number" class="form-control" placeholder="Unesi težinu u kilogramima" id="weight" autocomplete="false">
             </div>
 
             <button class="btn btn-primary" id="start">START</button>
@@ -61,26 +60,29 @@
         <div class="row" id="stopwatch-container">            
         <div id="stopwatch"></div>
         </div>
-        <div class="container" id="procedures-menu" style="display: none;">
+        <div id="applied-drugs">
+
+        </div>
+        <div class="container" id="procedures-menu" >
             <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="kpr-button">KPR</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="anafilaksija-button">ANAFILAKSIJA</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">ARITMIJA</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">GLUKOZA I ELEKTROLITI</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">KONVULZIJE</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">ONKOLOGIJA</button></div>
-            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button">VITALNE FUNKCIJE</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="anafilaksija-button" disabled>ANAFILAKSIJA</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button" disabled>ARITMIJA</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="glucose-electrolits-button">GLUKOZA, ELEKTROLITI I ABS</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button" disabled>KONVULZIJE</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button" disabled>ONKOLOGIJA</button></div>
+            <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="aritmija-button" disabled>VITALNE FUNKCIJE</button></div>
         </div>
 
         <div id="kpr" class="procedure-container" style="display: none;">
             <div class="card">
                 <div class="card-header">
-                    <img src="images/icons/arrow-left-circle-fill.svg" class="back-button" alt="" width="32" height="32" title="Nazad"> KPR
+                    <img src="images/icons/arrow-left-circle-fill.svg" class="back-button main-back-button" alt="" width="32" height="32" title="Nazad"> KPR
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="drug-container row">
                             <div class="col-12 col-md-6">
-                                <span class="drug-name">Adrenalin</span> <div class="float-right"> <span id="adrenalin-info" class="fas fa-info-circle drug-button info-button"></span> <span class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                                <span class="drug-name">Adrenalin</span> <div class="float-right"> <span id="adrenalin-info" class="fas fa-info-circle drug-button info-button"></span> <span id="adrenalin-apply" class="fas fa-check-circle drug-button add-drug-button"></span></div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <span id="adrenalin" class="drug-value"></span>
@@ -90,7 +92,7 @@
                     <li class="list-group-item">
                         <div class="drug-container row">
                             <div class="col-12 col-md-6">
-                                <span class="drug-name">Amiodaron</span> <div class="float-right"> <span id="amiodaron-info" class="fas fa-info-circle drug-button info-button"></span> <span class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                                <span class="drug-name">Amiodaron</span> <div class="float-right"> <span id="amiodaron-info" class="fas fa-info-circle drug-button info-button"></span> <span id="amiodaron-apply" class="fas fa-check-circle drug-button add-drug-button"></span></div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <span id="amiodaron" class="drug-value"></span>
@@ -145,8 +147,111 @@
                                 <span class="drug-name">Brzina infuzije kateholamina</span> <div class="float-right"> <span id="kateholamin-info" class="fas fa-info-circle drug-button info-button"></span> <span class="fas fa-check-circle drug-button add-drug-button"></span></div>
                             </div>
                             <div class="col-12 col-md-6">
-                                <div>Adrenalin, noradrenalin: <span id="adrenalin-noradrenalin" class="drug-value"></span> (0.1 ucg/kg/min)</div>
-                                <div>Dopamin, dobutamin: <span id="dopamin-dobutamin" class="drug-value"></span> (5 ucg/kg/min)</div>
+                                <div>Adrenalin, noradrenalin: <br> <span id="adrenalin-noradrenalin" class="drug-value"></span> (0.1 ucg/kg/min)</div>
+                                <div>Dopamin, dobutamin: <br> <span id="dopamin-dobutamin" class="drug-value"></span> (5 ucg/kg/min)</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="glucose-electrolits-menu" class="procedure-container" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <img src="images/icons/arrow-left-circle-fill.svg" class="back-button main-back-button" alt="" width="32" height="32" title="Nazad"> GLUKOZA, ELEKTROLITI I ABS
+                </div>
+                <div class="container">
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPOGLIKEMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPERGLIKEMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPOKALEMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPERKALEMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="hiponatremija-button">HIPONATREMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPERNATREMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPOKALCEMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPOMAGNEZEMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>HIPOFOSFATEMIJA</button></div>
+                    <div class="row"><button class="btn btn-primary procedure-button btn-lg btn-block" id="" disabled>ACIDOZA</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hiponatremija" class="procedure-container" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <img src="images/icons/arrow-left-circle-fill.svg" class="back-button glucose-back-button" alt="" width="32" height="32" title="Nazad"> HIPONATREMIJA
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="drug-container row">
+                            <div class="col-12 col-md-6">
+                                <span class="drug-name">3% NaCl</span> <div class="float-right"> <span id="3-pc-nacl-info" class="fas fa-info-circle drug-button info-button"></span> <span id="3-pc-nacl-apply" class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <span id="3-pc-nacl" class="drug-value"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="drug-container row">
+                            <div class="col-12 col-md-6">
+                                <span class="drug-name">Amiodaron</span> <div class="float-right"> <span id="amiodaron-info" class="fas fa-info-circle drug-button info-button"></span> <span id="amiodaron-apply" class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <span id="amiodaron" class="drug-value"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="drug-container row">
+                            <div class="col-12 col-md-6">
+                                <span class="drug-name">Bolus tekućine</span> <div class="float-right"> <span class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <span id="bolus" class="drug-value"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="drug-container row">
+                            <div class="col-12 col-md-6">
+                                <span class="drug-name">Defibrilacija</span> <div class="float-right"> <span id="defib-info" class="fas fa-info-circle drug-button info-button"></span> <span class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <span id="defib" class="drug-value"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="drug-container row">
+                            <div class="col-12 col-md-6">
+                                <span class="drug-name">Veličina tubusa</span>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div>Bez balončića: <span id="vtub" class="drug-value"></span></div>
+                                <div>S balončićem: <span id="vtub-cuffa" class="drug-value"></span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item tubus-container">
+                        <div class="drug-container row">
+                            <div class="col-12 col-md-6">
+                                <span class="drug-name">Dubina tubusa</span>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div>Oralni: <span id="oral" class="drug-value"></span></div>
+                                <div>Nazalni: <span id="nazal" class="drug-value"></span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item tubus-container">
+                        <div class="drug-container row">
+                            <div class="col-12 col-md-6">
+                                <span class="drug-name">Brzina infuzije kateholamina</span> <div class="float-right"> <span id="kateholamin-info" class="fas fa-info-circle drug-button info-button"></span> <span class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div>Adrenalin, noradrenalin: <br> <span id="adrenalin-noradrenalin" class="drug-value"></span> (0.1 ucg/kg/min)</div>
+                                <div>Dopamin, dobutamin: <br> <span id="dopamin-dobutamin" class="drug-value"></span> (5 ucg/kg/min)</div>
                             </div>
                         </div>
                     </li>
@@ -157,7 +262,7 @@
         <div id="anafilaksija" class="procedure-container" style="display: none;" >
             <div class="card">
                 <div class="card-header">
-                    <img src="images/icons/arrow-left-circle-fill.svg" class="back-button" alt="" width="32" height="32" title="Nazad"> ANAFILAKSIJA
+                    <img src="images/icons/arrow-left-circle-fill.svg" class="back-button main-back-button" alt="" width="32" height="32" title="Nazad"> ANAFILAKSIJA
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -245,6 +350,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <script src="scripts/countimer.js"></script>
         <script src="scripts/app.js"></script>
+        <script src="scripts/procedure-events.js"></script>
+        <script src="scripts/glucose.js"></script>
+        <script src="scripts/info.js"></script>
 </body>
 
 </html>

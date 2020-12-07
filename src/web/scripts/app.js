@@ -5,6 +5,8 @@ const ageTypeEnum = {
     CHILD: 3
 };
 
+var appliedDrugs = [];
+
 $('input[type=radio][name=age]').change(function() {
     if (this.value == 'child') {
         $("#age").show();
@@ -78,8 +80,9 @@ $( "#start" ).click(function(event) {
     calculateVtub (ageType, ageInYears);
     calculateTubus(ageType, ageInYears);
     calculateKateholamin(weight);
+    calculate3pcNacl(weight);
 
-    //startStopwatch();
+    startStopwatch();
     
     startReanimation();
 });
@@ -93,56 +96,28 @@ window.onbeforeunload = function(event)
    // return confirm("Reanimacija je u tijeku. Jeste li sigurni da želite napustiti aplikaciju?");
 };
 
-$(".info-button").click(function(event) {   
+$(".add-drug-button").click(function(event) {   
     var elemId = event.target.id;
+    var time = $('#stopwatch').countimer('current').displayedMode.formatted;
     var title = "";
-    var description = "";
     switch (elemId) {
-        case "adrenalin-info": {
+        case "adrenalin-apply": {
             title = "Adrenalin";
-            description = "Razrijediti jednu ampulu adrenalina (1mg/mL) s 9 mL F.O. <br> Kada jednom damo adrenalin, nastavljamo do kraja reanimacije svaki 2. ciklus." ;
             break;
         }
-        case "amiodaron-info": {
+        case "amiodaron-apply": {
             title = "Amiodaron";
-            description = "Razrijediti jednu ampulu amiodarona (150 mg/3 mL) s 12 mL 5% glukoze. <br> Kod VF i VT bez pulsa, primjeniti nakon 3. i 5. šoka." ;
             break;
         }
-        case "defib-info": {
-            title = "Defibrilacija";
-            description = "Ritmovi koji se defibriliraju jesu VF i VT bez pulsa." ;
-            break;
-        }
-        case "kateholamin-info": {
-            title = "Adrenalin";
-            description = "Za kontinuiranu infuziju adrenalina/noradrenalnina razrijediti 1 mg adrenalina/noradrenalina u 50 mL F.O. <br> Za kontinuiranu infuziju dopamina/dobutamina razrijediti 50 mg dopamina/dobutamina u 50 mL F.O:" ;
-            break;
-        }
-    }
+    }   
+    addAppliedDrug(title, time);
 
-    $("#modal-title").text(title);
-    $("#modal-body-content").html(description);
+    $("#applied-drugs").append('<div class="row">' + time + ': ' + title + '</div>');
 
-    $('#exampleModalLong').modal({});
 });
 
-
-$(".back-button").click(function(event) {   
-    $(".procedure-container").hide();
-    $("#procedures-menu").show();
-});
-
-$("#kpr-button").click(function(event) {
-    showProcedure("kpr");
-});
-
-$("#anafilaksija-button").click(function(event) {
-    showProcedure("anafilaksija");
-});
-
-function showProcedure(procedureId){    
-    $("#procedures-menu").hide();
-    $("#" + procedureId).show();
+function addAppliedDrug(drugName, time) {
+    appliedDrugs.push({ drugName: drugName, time: time});
 }
 
 function startReanimation() {
@@ -261,4 +236,13 @@ function calculateTubus (ageType, ageInYears) {
             break;
         }
     }
+}
+
+function calculateDefib(weight) {
+    var defib = 4 * weight;
+    if (defib > 360) {
+        defib = 360;
+    }
+
+    $("#defib").text(defib + " J");
 }
