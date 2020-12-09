@@ -85,7 +85,7 @@
             <div class="card">
                 <div class="card-header">
                     <img src="images/icons/arrow-left-circle-fill.svg" class="back-button main-back-button" alt=""
-                        width="32" height="32" title="Nazad"> KPR
+                        width="32" height="32" title="Nazad"> <span id="procedure-name"></span>
                 </div>
                 <div id="kpr" class="procedure-container" style="display: none;">
                     <ul class="list-group list-group-flush">
@@ -182,7 +182,7 @@
                         </li>
                     </ul>
                 </div>
-                <div id="hiponatremija" class="procedure-container" style="display: none;">
+                <div id="glucose-electrolits" class="procedure-container" style="display: none;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="drug-container row">
@@ -197,7 +197,21 @@
                                     <span id="3-pc-nacl" class="drug-value"></span>
                                 </div>
                             </div>
-                        </li>                        
+                        </li>  
+                        <li class="list-group-item">
+                            <div class="drug-container row">
+                                <div class="col-12 col-md-6">
+                                    <span class="drug-name">3% NaCl</span>
+                                    <div class="float-right"> <span id="3-pc-nacl-info"
+                                            class="fas fa-info-circle drug-button info-button"></span> <span
+                                            id="3-pc-nacl-apply"
+                                            class="fas fa-check-circle drug-button add-drug-button"></span></div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <span id="3-pc-nacl" class="drug-value"></span>
+                                </div>
+                            </div>
+                        </li>                       
                     </ul>
                 </div>
             </div>

@@ -25,10 +25,12 @@
 
 .info-button {
     color: blue;
+    cursor: pointer;
 }
 
 .add-drug-button {
-    color: green
+    color: green;
+    cursor: pointer;
 }
 
 .drug-button {

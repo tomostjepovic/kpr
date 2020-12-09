@@ -3,12 +3,12 @@ $(".main-back-button").click(function(event) {
     $("#procedures-menu").show();
 });
 
-$(".glucose-back-button").click(function(event) {   
-    $(".hiponatremija").hide();
-    $("#glucose-electrolits-menu").show();
-});
+function setProcedureTitle(title) {
+    $("#procedure-name").text(title);
+}
 
 $("#kpr-button").click(function(event) {
+    setProcedureTitle("KPR");
     showProcedure("kpr");
 });
 
@@ -17,12 +17,8 @@ $("#anafilaksija-button").click(function(event) {
 });
 
 $("#glucose-electrolits-button").click(function(event) {
-    showProcedure("hiponatremija");
-});
-
-$("#hiponatremija-button").click(function(event) {
-    $("#glucose-electrolits-menu").hide();
-    showProcedure("hiponatremija");
+    setProcedureTitle("GLUKOZA, ELEKTROLITI I ABS");
+    showProcedure("glucose-electrolits");
 });
 
 function showProcedure(procedureId){    

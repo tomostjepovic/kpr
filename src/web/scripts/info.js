@@ -25,7 +25,8 @@ $(".info-button").click(function(event) {
         }
         case "3-pc-nacl-info": {
             title = "3% NaCl";
-            description = "Dati otopinu intravenski tijekom 15 minuta SAMO u slučaju simptomatske hiponatremije (konvulzije). Podići će Na za otprilike 3 mmol i zaustaviti konvulzije." ;
+            description = "Dati otopinu intravenski tijekom 15 minuta SAMO u slučaju simptomatske hiponatremije (konvulzije). Podići će Na za otprilike 3 mmol i zaustaviti konvulzije.<br><br>" +
+                "500 mL NaCl dobije se na način da se u 384 mL f.o. doda 116 mL 10% NaCl. <br><br> Natrij se ne bi smio dizati za više od 6-8 mmol/dan zbog opasnosti od centralne mielinoze ponsa.";
             break;
         }
     }
